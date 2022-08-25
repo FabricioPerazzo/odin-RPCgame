@@ -26,16 +26,51 @@ function playRound(playerChoice, computerChoice) {
                 return"You lose! SCISSORS beats PAPER";
         }
     }
-    else {
+    else if (playerChoice.toUpperCase() === "SCISSORS") {
         switch(computerChoice){
             case "ROCK":
                 return "You lose! ROCK beats SCISSORS";
             case "PAPER":
                 return "You win! SCISSORS beats PAPER";
             case "SCISSORS":
-                return"It's a tie! you both chose SCISSORS";
+                return "It's a tie! you both chose SCISSORS";
         }
+    }
+    else {
+        return "You entered an invalid choice";
     }
 }
 
-console.log(playRound("paper", getComputerChoice()));
+function getWinner(message) {
+    if (message.includes("win")) return 1;
+    if (message.includes("lose")) return -1;
+    else return 0;
+}
+
+function game() {
+    let playerPoints = 0;
+    let computerPoints = 0;
+
+    for (let i = 0; i < 5; i++) {
+        let message = playRound(prompt("Enter your choice:"), getComputerChoice());
+        if (message === "You entered an invalid choice") {
+            console.log(message);
+            i--;
+            continue;
+        }
+        else {
+            console.log(message);
+            if (getWinner(message) === 1){
+                playerPoints++;
+            }
+            else if (getWinner(message) === -1){
+                computerPoints++;
+            }
+        }
+    }
+
+    if (playerPoints > computerPoints) console.log(`Congratulations, you won with a score of ${playerPoints} to ${computerPoints}!`);
+    else console.log(`You lose with a score of ${playerPoints} to ${computerPoints}!`);
+}
+
+game();
