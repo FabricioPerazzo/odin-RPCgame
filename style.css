@@ -1,0 +1,85 @@
+html, body {
+    background-color: black;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.gameDisplay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 65px;
+    padding: 36px;
+}
+
+.subtitle {
+    font-size: 38px;
+    padding: 16px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 20px;
+}
+
+.gameDisplay button {
+    height: 200px;
+    width: 200px;
+    border: none;
+}
+
+#button-rock {
+    background: url(./images/rock.png);
+    background-size: cover;
+}
+
+#button-paper {
+    background: url(./images/paper.png);
+    background-size: cover;
+}
+
+#button-scissors {
+    background: url(./images/scissors.png);
+    background-size: cover;
+}
+
+.results , .score {
+    font-size: 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.scoreBoard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+}
+
+.playerScore , .computerScore {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    padding: 16px;
+}
+
+#numPlayer , #numComputer {
+    font-size: 80px;
+}

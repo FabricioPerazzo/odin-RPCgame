@@ -4,18 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>RPC game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="gameDisplay">
-        <h1> ROCK PAPER SCISSORS </h1>
-        <h3> Choose your move </h3>
+        <div class="title"> ROCK PAPER SCISSORS </div>
+        <div class="subtitle"> Choose your move </div>
         <div class="buttons">
             <button id="button-rock"> </button>
             <button id="button-paper"> </button>
             <button id="button-scissors"> </button>
         </div>
-        <div class="results"> Result of turns will be displayed here, including score </div>
+        <div class="results">
+            <div class="score">
+                <div class="scoreBoard">
+                    <div class="playerScore">
+                        <div> Player </div>
+                        <div id="numPlayer"> 0 </div>
+                    </div>
+                    <div class="computerScore">
+                        <div> Computer </div>
+                        <div id="numComputer"> 0 </div>
+                    </div>
+                </div>
+            </div>
+            <div class="turnResult"> Someone won! </div>
+        </div>
     </div>
 
     <script src="game.js"> </script>

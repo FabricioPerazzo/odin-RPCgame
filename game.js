@@ -73,4 +73,4 @@ function game() {
     else console.log(`You lose with a score of ${playerPoints} to ${computerPoints}!`);
 }
 
-game();
+//game();
