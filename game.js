@@ -67,6 +67,19 @@ function game(result) {
     }
 }
 
+function chekEndGame(playerPoints, computerPoints) {
+    if (playerPoints === 5) {
+        resultMessageDiv.textContent = `Congratulations, you won with a score of ${playerPoints} to ${computerPoints}!`;
+        playerPointsDiv.textContent = 0;
+        computerPointsDiv.textContent = 0;
+    }
+    else if (computerPoints === 5) {
+        resultMessageDiv.textContent = `You lose with a score of ${playerPoints} to ${computerPoints}!`;
+        computerPointsDiv.textContent = 0;
+        playerPointsDiv.textContent = 0;
+    }
+}
+
 const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -77,20 +90,11 @@ buttons.forEach((button) => {
         else if (buttonID === "button-paper") playerChoice = "PAPER";
         else playerChoice = "SCISSORS";
 
-        console.log(`Player choice: ${playerChoice}`);
-
         let roundResult = playRound(playerChoice, getComputerChoice());
-        console.log(`Round result: ${roundResult}`);
         game(roundResult);
 
-        let playerPoints = playerPointsDiv.textContent;
-        let computerPoints = computerPointsDiv.textContent;
-
-        if (playerPoints === 5) {
-            resultMessageDiv.textContent = "Congratulations, you won!";
-        }
-        else if (computerPoints === 5) {
-            resultMessageDiv.textContent = "You lose";
-        }
+        let playerPoints = parseInt(playerPointsDiv.textContent);
+        let computerPoints = parseInt(computerPointsDiv.textContent);
+        chekEndGame(playerPoints, computerPoints);
     })
 });
