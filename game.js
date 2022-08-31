@@ -1,3 +1,7 @@
+const playerPointsDiv = document.querySelector("#numPlayer");
+const computerPointsDiv = document.querySelector("#numComputer");
+const resultMessageDiv = document.querySelector(".turnResult");
+
 function getComputerChoice() {
     let randNum = Math.floor(Math.random() * 3);
     if (randNum === 0) return "ROCK";
@@ -26,7 +30,7 @@ function playRound(playerChoice, computerChoice) {
                 return"You lose! SCISSORS beats PAPER";
         }
     }
-    else if (playerChoice.toUpperCase() === "SCISSORS") {
+    else {
         switch(computerChoice){
             case "ROCK":
                 return "You lose! ROCK beats SCISSORS";
@@ -36,9 +40,6 @@ function playRound(playerChoice, computerChoice) {
                 return "It's a tie! you both chose SCISSORS";
         }
     }
-    else {
-        return "You entered an invalid choice";
-    }
 }
 
 function getWinner(message) {
@@ -47,30 +48,49 @@ function getWinner(message) {
     else return 0;
 }
 
-function game() {
-    let playerPoints = 0;
-    let computerPoints = 0;
+function game(result) {
+    let roundResult_ = getWinner(result);
+    let score;
 
-    for (let i = 0; i < 5; i++) {
-        let message = playRound(prompt("Enter your choice:"), getComputerChoice());
-        if (message === "You entered an invalid choice") {
-            console.log(message);
-            i--;
-            continue;
-        }
-        else {
-            console.log(message);
-            if (getWinner(message) === 1){
-                playerPoints++;
-            }
-            else if (getWinner(message) === -1){
-                computerPoints++;
-            }
-        }
+    if (roundResult_ === 1){
+        score = parseInt(playerPointsDiv.textContent) + 1;
+        playerPointsDiv.textContent = score;
+        resultMessageDiv.textContent = result;
     }
-
-    if (playerPoints > computerPoints) console.log(`Congratulations, you won with a score of ${playerPoints} to ${computerPoints}!`);
-    else console.log(`You lose with a score of ${playerPoints} to ${computerPoints}!`);
+    else if (roundResult_ === -1){
+        score = parseInt(computerPointsDiv.textContent) + 1;
+        computerPointsDiv.textContent = score;
+        resultMessageDiv.textContent = result;
+    }
+    else {
+        resultMessageDiv.textContent = result;
+    }
 }
 
-//game();
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        let playerChoice;
+        let buttonID = button.id;
+
+        if (buttonID === "button-rock") playerChoice = "ROCK";
+        else if (buttonID === "button-paper") playerChoice = "PAPER";
+        else playerChoice = "SCISSORS";
+
+        console.log(`Player choice: ${playerChoice}`);
+
+        let roundResult = playRound(playerChoice, getComputerChoice());
+        console.log(`Round result: ${roundResult}`);
+        game(roundResult);
+
+        let playerPoints = playerPointsDiv.textContent;
+        let computerPoints = computerPointsDiv.textContent;
+
+        if (playerPoints === 5) {
+            resultMessageDiv.textContent = "Congratulations, you won!";
+        }
+        else if (computerPoints === 5) {
+            resultMessageDiv.textContent = "You lose";
+        }
+    })
+});
